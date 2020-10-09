@@ -6,7 +6,7 @@
 
 name: txnews
 
-on:
+on: [push, pull_request]
   workflow_dispatch:
   schedule:
      - cron: '*/7 1-14 * * *'
@@ -18,6 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
+      - uses: actions/checkout@v2
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "脚本执行来自 Github Action"
+          replace: "脚本执行来自 Github Action MOD"
+          include: "Task/txnews.js" 
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
