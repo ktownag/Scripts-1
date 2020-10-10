@@ -28,7 +28,7 @@ jobs:
           npm install
       - name: '运行 【腾讯新闻】- 账号2'
         run: |
-          node Task/txnews.js
+          sleep 3m && node Task/txnews.js
         env:
           TXNEWS_SIGN: ${{ secrets.TXNEWS_SIGN2 }}
           TXNEWS_COOKIE: ${{ secrets.TXNEWS_COOKIE2 }}
