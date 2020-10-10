@@ -28,7 +28,8 @@ jobs:
           npm install
       - name: '运行 【腾讯新闻】- 账号2'
         run: |
-          sleep 3m && node Task/txnews.js
+          for i in $(seq $(($(shuf -i 6-200 -n 1))) -1 1); do echo -n "$i, "; sleep 1; done; echo -e "\n\nBOOOM! Time to start." && 
+          node Task/txnews.js
         env:
           TXNEWS_SIGN: ${{ secrets.TXNEWS_SIGN2 }}
           TXNEWS_COOKIE: ${{ secrets.TXNEWS_COOKIE2 }}
